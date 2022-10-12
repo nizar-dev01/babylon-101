@@ -3,16 +3,21 @@
 </template>
 
 <script lang="ts">
-import { App } from '../babylon/game/app';
+import { App } from '@game';
+
+interface Data {
+    app: App | null;
+}
+
 export default {
+    data():Data {
+        return {
+            app: null
+        }
+    },
     mounted() {
         const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-        new App(canvas);
-        console.log("@ Game Page :)")
+        this.app = new App(canvas);
     }
 }
 </script>
-
-<style>
-
-</style>
