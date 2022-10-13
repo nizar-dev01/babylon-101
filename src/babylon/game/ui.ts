@@ -36,8 +36,8 @@ export class Hud {
 
   //Timer handlers
   public stopSpark: boolean;
-  private _handle;
-  private _sparkhandle;
+  private _handle: string | number | NodeJS.Timer;
+  private _sparkhandle: string | number | NodeJS.Timer;
 
   //Pause toggle
   public gamePaused: boolean;
@@ -50,8 +50,8 @@ export class Hud {
   public pauseBtn: Button;
   public fadeLevel: number;
   private _playerUI;
-  private _pauseMenu;
-  private _controls;
+  private _pauseMenu: Control;
+  private _controls: Rectangle;
   public tutorial;
   public hint;
 

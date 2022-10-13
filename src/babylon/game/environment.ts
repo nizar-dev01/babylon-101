@@ -27,7 +27,7 @@ export class Environment {
   private _lightmtl: PBRMetallicRoughnessMaterial; // emissive texture for when lanterns are lit
 
   //fireworks
-  private _fireworkObjs = [];
+  private _fireworkObjs: Firework[] = [];
   private _startFireworks: boolean = false;
 
   constructor(scene: Scene) {
@@ -346,7 +346,7 @@ class Firework {
     emitter.setVerticesData(VertexBuffer.ColorKind, vertColors);
   }
 
-  private _startFirework(): void {
+  public _startFirework(): void {
     if (this._started) {
       //if it's started, rocket flies up to height & then explodes
       if (this._emitter.position.y >= this._height && !this._exploded) {

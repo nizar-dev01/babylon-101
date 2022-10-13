@@ -4,6 +4,8 @@ import {
   FreeCamera,
   Vector3,
   HemisphericLight,
+  MeshBuilder,
+  Mesh,
 } from "@babylonjs/core";
 
 export class CreateScene {
@@ -29,16 +31,30 @@ export class CreateScene {
 
     const camera: FreeCamera = new FreeCamera(
       "camera",
-      new Vector3(0, 1, 0),
+      new Vector3(0, 5, -15),
       scene
     );
     camera.attachControl();
 
     const hemiLight: HemisphericLight = new HemisphericLight(
       "hemi-light",
-      new Vector3(0, 1, 0),
+      new Vector3(0, 2, 0),
       scene
     );
+    hemiLight.intensity = 0.5;
+
+    const ground: Mesh = MeshBuilder.CreateGround(
+      "ground",
+      { width: 10, height: 10 },
+      scene
+    );
+
+    const sphere: Mesh = MeshBuilder.CreateSphere("sphere", {
+      diameter: 2,
+    });
+
+    sphere.position = new Vector3(0, 1, 0);
+
     return scene;
   }
 }

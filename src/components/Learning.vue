@@ -4,9 +4,13 @@
 
 <script lang="ts">
 import { initCanvas } from '../babylon/learning/init';
+let _this: any;
 export default {
-    mounted() {
-        const canvas: HTMLCanvasElement | any = this.$refs.canvas;
+    created() {
+        _this = this;
+    },
+    mounted: () => {
+        const canvas: HTMLCanvasElement = (_this || { $refs: { canvas: null } }).$refs.canvas;
         initCanvas(canvas, {
             height: window.innerHeight,
             width: window.innerWidth

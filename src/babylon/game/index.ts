@@ -54,11 +54,11 @@ export class App {
   private _engine: Engine;
 
   //Game State Related
-  public assets;
+  public assets: any;
   private _input: PlayerInput;
   private _player: Player;
   private _ui: Hud;
-  private _environment;
+  private _environment: any;
 
   //Sounds
   // public sfx: Sound;
@@ -523,8 +523,8 @@ export class App {
     });
 
     //--PLAYING ANIMATIONS--
-    let animTimer;
-    let anim2Timer;
+    let animTimer: string | number | NodeJS.Timer | undefined;
+    let anim2Timer: string | number | NodeJS.Timer | undefined;
     let anim = 1; //keeps track of which animation we're playing
     //sets up the state machines for animations
     this._cutScene.onBeforeRenderObservable.add(() => {
@@ -1006,7 +1006,7 @@ export class App {
   }
 
   //load the character model
-  private async _loadCharacterAssets(scene): Promise<any> {
+  private async _loadCharacterAssets(scene: Scene): Promise<any> {
     async function loadCharacter() {
       //collision mesh
       const outer = MeshBuilder.CreateBox(
@@ -1056,7 +1056,7 @@ export class App {
   }
 
   //init game
-  private async _initializeGameAsync(scene): Promise<void> {
+  private async _initializeGameAsync(scene: Scene): Promise<void> {
     scene.ambientColor = new Color3(
       0.34509803921568627,
       0.5568627450980392,
@@ -1156,7 +1156,7 @@ export class App {
     //glow layer
     const gl = new GlowLayer("glow", scene);
     gl.intensity = 0.4;
-    this._environment._lanternObjs.forEach((lantern) => {
+    this._environment._lanternObjs.forEach((lantern: { mesh: Mesh }) => {
       gl.addIncludedOnlyMesh(lantern.mesh);
     });
     //webpack served from public

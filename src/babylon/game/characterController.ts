@@ -17,6 +17,7 @@ import {
   Sound,
   Observable,
   ShadowGenerator,
+  AbstractMesh,
 } from "@babylonjs/core";
 import { PlayerInput } from "./inputController";
 
@@ -26,7 +27,7 @@ export class Player extends TransformNode {
   private _input: PlayerInput;
 
   //Player
-  public mesh: Mesh; //outer collisionbox of player
+  public mesh: Mesh | AbstractMesh; //outer collisionbox of player
 
   //Camera
   private _camRoot: TransformNode;
@@ -106,12 +107,12 @@ export class Player extends TransformNode {
   public onRun = new Observable();
 
   //tutorial
-  public tutorial_move;
-  public tutorial_dash;
-  public tutorial_jump;
+  public tutorial_move: boolean;
+  public tutorial_dash: boolean;
+  public tutorial_jump: boolean;
 
   constructor(
-    assets,
+    assets: { mesh: Mesh | AbstractMesh; animationGroups: AnimationGroup[] },
     scene: Scene,
     shadowGenerator: ShadowGenerator,
     input?: PlayerInput
@@ -356,7 +357,7 @@ export class Player extends TransformNode {
     let ray = new Ray(raycastFloorPos, Vector3.Up().scale(-1), raycastlen);
 
     //defined which type of meshes should be pickable
-    let predicate = function (mesh) {
+    let predicate = function (mesh: { isPickable: any; isEnabled: () => any }) {
       return mesh.isPickable && mesh.isEnabled();
     };
 
@@ -385,7 +386,7 @@ export class Player extends TransformNode {
   //check whether a mesh is sloping based on the normal
   private _checkSlope(): boolean {
     //only check meshes that are pickable and enabled (specific for collision meshes that are invisible)
-    let predicate = function (mesh) {
+    let predicate = function (mesh: { isPickable: any; isEnabled: () => any }) {
       return mesh.isPickable && mesh.isEnabled();
     };
 
