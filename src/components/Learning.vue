@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { initCanvas } from '../babylon/learning/init';
+import { initCanvas } from '../babylon/learning'
 let _this: any;
 export default {
     created() {
