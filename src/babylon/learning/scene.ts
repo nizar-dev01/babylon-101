@@ -33,27 +33,28 @@ export default class {
 
     const camera: FreeCamera = new FreeCamera(
       "camera",
-      new Vector3(0, 5, -15),
+      new Vector3(0, 1, -5),
       scene
     );
 
     camera.attachControl();
+    camera.speed = 0.1;
 
     const hemiLight: HemisphericLight = new HemisphericLight(
       "hemi-light",
-      new Vector3(0, 10, 0),
+      new Vector3(0, 1, 0),
       scene
     );
     hemiLight.intensity = 1;
 
     const ground: Mesh = MeshBuilder.CreateGround(
       "ground",
-      { width: 20, height: 20 },
+      { width: 10, height: 10 },
       scene
     );
 
     const ball: Mesh = MeshBuilder.CreateSphere("sphere", {
-      diameter: 2,
+      diameter: 1,
     });
 
     ball.position = new Vector3(0, 1, 0);
@@ -81,12 +82,19 @@ export default class {
     // Normal Texture
     const normalTex = new Texture("./textures/stone/normal.jpg", this.scene);
     groundMaterial.bumpTexture = normalTex;
+    groundMaterial.invertNormalMapX = true;
+    groundMaterial.invertNormalMapY = true;
     textures.push(normalTex);
 
     // AO Texture
     const aoTex = new Texture("./textures/stone/ao.jpg", this.scene);
     groundMaterial.ambientTexture = aoTex;
     textures.push(aoTex);
+
+    // Specular Texture
+    const specTex = new Texture("./textures/stone/spec.jpg", this.scene);
+    groundMaterial.specularTexture = specTex;
+    textures.push(specTex);
 
     // Set the uvScale
     textures.forEach((tex) => {
@@ -114,6 +122,8 @@ export default class {
     // Normal Texture
     const normalTex = new Texture("./textures/metal/normal.jpg", this.scene);
     ballMaterial.bumpTexture = normalTex;
+    ballMaterial.invertNormalMapX = true;
+    ballMaterial.invertNormalMapY = true;
     textures.push(normalTex);
 
     // AO Texture
@@ -121,11 +131,18 @@ export default class {
     ballMaterial.ambientTexture = aoTex;
     textures.push(aoTex);
 
+    // Specular Texture
+    const specTex = new Texture("./textures/metal/spec.jpg", this.scene);
+    ballMaterial.specularTexture = specTex;
+    textures.push(specTex);
+
     // Set the uvScale
     textures.forEach((tex) => {
       tex.uScale = uvScale;
       tex.vScale = uvScale;
     });
+
+    ballMaterial.specularPower = 1;
 
     return ballMaterial;
   }
