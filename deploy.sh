@@ -4,7 +4,7 @@
 set -e
 
 # build
-npm run build
+npm run cli-build
 
 # navigate into the build output directory
 cd dist
@@ -21,7 +21,6 @@ git commit -m 'deploy'
 # if you are deploying to https://<USERNAME>.github.io
 git branch deploy && git checkout deploy
 git remote add origin git@personal:nizar-dev01/babylon-101.git
-git branch --set-upstream-to origin/deploy
 git push -f git@personal:nizar-dev01/babylon-101.git deploy
 
 rm -rf .git

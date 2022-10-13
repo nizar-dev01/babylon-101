@@ -6,6 +6,7 @@ const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
   transpileDependencies: true,
+  publicPath: "/babylon-101",
   configureWebpack: {
     resolve: {
       alias: {
