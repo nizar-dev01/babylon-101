@@ -10,7 +10,7 @@ import {
   Texture,
 } from "@babylonjs/core";
 
-export default class {
+export class Materials {
   scene: Scene;
   engine: Engine;
 
