@@ -15,6 +15,7 @@
     "@babylonjs/core": "^5.27.1",
     "@babylonjs/gui": "^5.27.1",
     "@babylonjs/inspector": "^5.27.1",
+    "@babylonjs/loaders": "^5.28.0",
     "@types/babylonjs": "^2.4.1",
     "vue": "^3.2.37",
     "vue-router": "^4.1.5",
